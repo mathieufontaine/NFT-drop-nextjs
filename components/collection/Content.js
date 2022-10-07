@@ -1,6 +1,6 @@
 import { urlFor } from "/sanity";
 
-const Content = ({ image, title }) => {
+const Content = ({ image, title, supply, claimedSupply, isLoading }) => {
   return (
     <div
       className="flex flex-auto flex-col p-10 items-center text-center space-y-2 
@@ -14,7 +14,15 @@ const Content = ({ image, title }) => {
       <h1 className="text-3xl font-bold lg:text-4xl lg:font-extrabold">
         {title}
       </h1>
-      <p className="pt-2 text-xl text-green-600">12/25 NFT's claimed</p>
+      {isLoading ? (
+        <p className="animate-pulse pt-2 text-xl text-green-600">
+          Loading Supply...
+        </p>
+      ) : (
+        <p className="pt-2 text-xl text-green-600">
+          {claimedSupply}/{supply} NFT's claimed
+        </p>
+      )}
     </div>
   );
 };
